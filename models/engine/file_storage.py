@@ -5,6 +5,15 @@ import json
 import os
 from models.base_model import BaseModel
 from models.user import User
+from models.amenity import Amenity
+try:
+    from models.place import Place
+except ImportError:
+    import sys
+    Place = sys.moduile[__package__ + '.Place']
+from models.review import Review
+from models.state import State
+from models.city import City
 
 class FileStorage :
     """Class incharge of serialization/deserialization from/to JSON file"""
@@ -42,9 +51,5 @@ class FileStorage :
                         cls = eval(class_name)
                         obj_instance = cls(**obj_dict)
                         FileStorage.__objects[key] = obj_instance
-                except FileNotFoundError:
-                    print("File not found.")
-                    pass
-                except Exception as r:
-                    print("Error reloading objects:", e)
+                except Exception:
                     pass
