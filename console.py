@@ -1,5 +1,19 @@
 #!/usr/bin/env python3
-"""Console"""
+"""
+Module: console.py
+
+Description:
+    This module implements a command-line interface (CLI) for interacting
+    with the AirBnB clone project. It provides various commands to create,
+    manipulate, and manage instances of different classes such as BaseModel,
+    User, State, City, Amenity, Place, and Review.
+
+Usage:
+    This Module can be run as a script using:
+    $ ./console.py
+
+    Type 'help' to display a list of available commands and their usage.
+"""
 import cmd
 from models import storage
 from models.base_model import BaseModel
