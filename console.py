@@ -152,6 +152,29 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
 
+    def default(self, line):
+        """Handle unrecognized commands"""
+
+        if '.' not in line:
+            return super().default(line)
+
+        method_dict = {
+                'show': self.do_show,
+                'all': self.do_all,
+                'destroy': self.do_destroy,
+                'update': self.do_update
+        }
+
+        args = line.split('.')
+
+        class_name = args[0]
+        cmd = args[1].split('(')
+
+        method = cmd[0]
+
+        if method in method_dict.keys():
+            return method_dict[method]("{} {}".format(class_name, ''))
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
