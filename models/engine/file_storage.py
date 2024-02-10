@@ -15,7 +15,8 @@ from models.review import Review
 from models.state import State
 from models.city import City
 
-class FileStorage :
+
+class FileStorage:
     """Class incharge of serialization/deserialization from/to JSON file"""
 
     __file_path = "file.json"

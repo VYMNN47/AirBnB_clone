@@ -14,7 +14,8 @@ from models.city import City
 class HBNBCommand(cmd.Cmd):
     """Console Class that deals with all the console command control"""
     prompt = '(hbnb) '
-    classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
+    classes = ["BaseModel", "User", "State", "City",
+                            "Amenity", "Place", "Review"]
 
     def do_quit(self, line):
         """Quit command to exit the program"""
@@ -41,7 +42,6 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             cls = args[0]
-        
             new_inst = eval(cls)()
             new_inst.save()
             print(new_inst.id)
@@ -63,9 +63,8 @@ class HBNBCommand(cmd.Cmd):
         else:
 
             objects = storage.all()
-
-
             key = "{}.{}".format(args[0], args[1])
+
             if key not in objects:
                 print("** no instance found **")
             else:
@@ -88,9 +87,8 @@ class HBNBCommand(cmd.Cmd):
         else:
 
             objects = storage.all()
-
-
             key = "{}.{}".format(args[0], args[1])
+
             if key not in objects:
                 print("** no instance found **")
             else:
@@ -145,14 +143,15 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
         else:
             objects = storage.all()
-
-
             key = "{}.{}".format(args[0], args[1])
+
             if key in objects:
                 obj = objects[key]
                 setattr(obj, args[2], args[3])
                 obj.save()
             else:
                 print("** no instance found **")
+
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
