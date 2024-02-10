@@ -22,6 +22,9 @@ class BaseModel:
         models.storage.new(self)
 
     def __update(self, **kwargs):
+        """
+        Updates updated_at attr
+        """
         time_format = "%Y-%m-%dT%H:%M:%S.%f"
         for key, value in kwargs.items():
             if key == "__class__":
