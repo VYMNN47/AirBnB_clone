@@ -22,24 +22,24 @@ class FileStorage:
     and deserializing data.
 
     Args:
-        __file_path (str): The file path to store the serialized data.
-        __objects (dict): A dictionary to store objects with keys
+        __file_path: The file path to store the serialized data.
+        __objects: A dictionary to store objects with keys
                             formatted as "<class name>.<object id>".
 
     Methods:
-        new(self, obj):
+        new:
             Sets an object in the __objects dictionary with a
             key of "<obj class name>.id".
 
-        all(self):
+        all:
             Returns the __objects dictionary, providing access
             to all the stored objects.
 
-        save(self):
+        save:
             Serializes the __objects dictionary into JSON format and
             saves it to the file specified by __file_path.
 
-        reload(self):
+        reload:
             Deserializes the JSON file and loads objects back
             into the __objects dictionary.
     """
