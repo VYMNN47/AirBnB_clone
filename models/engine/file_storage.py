@@ -6,13 +6,11 @@ import os
 from models.base_model import BaseModel
 from models.user import User
 from models.amenity import Amenity
-
 try:
     from models.place import Place
 except ImportError:
     import sys
     Place = sys.moduile[__package__ + '.Place']
-
 from models.review import Review
 from models.state import State
 from models.city import City
@@ -27,23 +25,6 @@ class FileStorage:
         __file_path: The file path to store the serialized data.
         __objects: A dictionary to store objects with keys
                             formatted as "<class name>.<object id>".
-
-    Methods:
-        new:
-            Sets an object in the __objects dictionary with a
-            key of "<obj class name>.id".
-
-        all:
-            Returns the __objects dictionary, providing access
-            to all the stored objects.
-
-        save:
-            Serializes the __objects dictionary into JSON format and
-            saves it to the file specified by __file_path.
-
-        reload:
-            Deserializes the JSON file and loads objects back
-            into the __objects dictionary.
     """
 
     __file_path = "file.json"

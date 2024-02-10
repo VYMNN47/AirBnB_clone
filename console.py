@@ -206,9 +206,10 @@ class HBNBCommand(cmd.Cmd):
         cmd = args[1].split('(')
 
         method = cmd[0]
+        method_args = cmd[1].split(')')[0]
 
         if method in method_dict.keys():
-            return method_dict[method]("{} {}".format(class_name, ''))
+            return method_dict[method]("{} {}".format(class_name, method_args.strip('\"')))
 
 
 if __name__ == '__main__':
