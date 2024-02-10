@@ -17,8 +17,26 @@ from models.city import City
 
 
 class FileStorage:
-    """Class incharge of serialization/deserialization from/to JSON file"""
+      """
+    FileStorage class for storing, serializing, and deserializing data.
 
+    Attributes:
+        __file_path (str): The file path to store the serialized data.
+        __objects (dict): A dictionary to store objects with keys formatted as "<class name>.<object id>".
+
+    Methods:
+        new(self, obj):
+            Sets an object in the __objects dictionary with a key of "<obj class name>.id".
+
+        all(self):
+            Returns the __objects dictionary, providing access to all the stored objects.
+
+        save(self):
+            Serializes the __objects dictionary into JSON format and saves it to the file specified by __file_path.
+
+        reload(self):
+            Deserializes the JSON file and loads objects back into the __objects dictionary.
+    """
     __file_path = "file.json"
     __objects = {}
 
