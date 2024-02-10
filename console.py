@@ -172,7 +172,6 @@ class HBNBCommand(cmd.Cmd):
 
             print(count)
 
-
     def default(self, line):
         """Handle unrecognized commands"""
 

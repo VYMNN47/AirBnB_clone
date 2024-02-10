@@ -7,7 +7,7 @@ class User(BaseModel):
     """
     User class inheriting from BaseModel
 
-    Args:
+    Attributes:
         email: The email address of the user.
         password: The password of the user.
         first_name: The first name of the user.
