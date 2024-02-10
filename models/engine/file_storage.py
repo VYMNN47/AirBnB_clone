@@ -21,7 +21,7 @@ class FileStorage:
     FileStorage class for storing, serializing
     and deserializing data.
 
-    Attributes:
+    Args:
         __file_path (str): The file path to store the serialized data.
         __objects (dict): A dictionary to store objects with keys
                             formatted as "<class name>.<object id>".
