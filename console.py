@@ -152,6 +152,27 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
 
+    def do_count(self, line):
+        """prints the number of isntances of a class"""
+
+        args = line.split()
+
+        if len(args) == 0:
+            print("** class name missing **")
+        elif args[0] not in self.classes:
+            print("** class doesn't exist **")
+        else:
+            count = 0
+
+            objects = storage.all()
+
+            for key in objects.keys():
+                if key.split('.')[0] == args[0]:
+                    count += 1
+
+            print(count)
+
+
     def default(self, line):
         """Handle unrecognized commands"""
 
@@ -162,7 +183,8 @@ class HBNBCommand(cmd.Cmd):
                 'show': self.do_show,
                 'all': self.do_all,
                 'destroy': self.do_destroy,
-                'update': self.do_update
+                'update': self.do_update,
+                'count': self.do_count
         }
 
         args = line.split('.')
