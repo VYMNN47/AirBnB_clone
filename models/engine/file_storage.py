@@ -6,11 +6,13 @@ import os
 from models.base_model import BaseModel
 from models.user import User
 from models.amenity import Amenity
+
 try:
     from models.place import Place
 except ImportError:
     import sys
     Place = sys.moduile[__package__ + '.Place']
+
 from models.review import Review
 from models.state import State
 from models.city import City
