@@ -208,8 +208,17 @@ class HBNBCommand(cmd.Cmd):
         method = cmd[0]
         method_args = cmd[1].split(')')[0]
 
+        all_args = method_args.split(',')
+
         if method in method_dict.keys():
-            return method_dict[method]("{} {}".format(class_name, method_args.strip('\"')))
+            if method != "update":
+                return method_dict[method]("{} {}".format(class_name,
+                                           method_args.strip('\"')))
+            else:
+                return method_dict[method]("{} {} {} {}".format(class_name,
+                                           all_args[0].strip('\"'),
+                                           all_args[1].strip('\"'),
+                                           all_args[2].strip('\"')))
 
 
 if __name__ == '__main__':
