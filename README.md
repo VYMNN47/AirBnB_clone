@@ -130,3 +130,8 @@ hamo@Ahmed-Desktop:~/AirBnB_clone$ echo "create User" | ./console.py
 hamo@Ahmed-Desktop:~/AirBnB_clone$ echo "show User 55b76419-6009-4b36-b88a-7c2930283f4a" | ./console.py
 (hbnb) [User] (55b76419-6009-4b36-b88a-7c2930283f4a) {'id': '55b76419-6009-4b36-b88a-7c2930283f4a', 'created_at': datetime.datetime(2020, 7, 1, 12, 37, 15, 575191), 'updated_at': datetime.datetime(2020, 7, 1, 12, 37, 15, 575237)}
 ```
+## AUTHORS
+---
+
+* [Ayman Belahsen](https://github.com/VYMNN47) Software Engineering student at [ALX]
+* [Ahmed Mahmoud](https://github.com/Ahmed-l2) Software Engineering student at [ALX]
