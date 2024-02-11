@@ -76,7 +76,7 @@ The commands available for this command interpreter are:
 ## Tests ⚙️
 ---
 
-### Interactive Mode ⌨️
+### Interactive Mode
 
 #### Example 1: Using create, count and all commands
 ```
@@ -123,7 +123,7 @@ hamo@Ahmed-Desktop:~/AirBnB_clone$ ./console.py
 hamo@Ahmed-Desktop:~/AirBnB_clone$
 ```
 
-### Non - Interactive Mode ⌨️
+### Non - Interactive Mode
 ```
 hamo@Ahmed-Desktop:~/AirBnB_clone$ echo "create User" | ./console.py
 (hbnb) 55b76419-6009-4b36-b88a-7c2930283f4a
