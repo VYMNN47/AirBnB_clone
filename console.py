@@ -297,6 +297,9 @@ class HBNBCommand(cmd.Cmd):
                 except Exception:
                     pass
 
+        else:
+            return super().default(line)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
