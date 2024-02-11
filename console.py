@@ -15,6 +15,8 @@ Usage:
     Type 'help' to display a list of available commands and their usage.
 """
 import cmd
+import re
+import ast
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
@@ -23,6 +25,41 @@ from models.place import Place
 from models.review import Review
 from models.state import State
 from models.city import City
+
+
+def parse_curly_braces(args):
+    """
+    Splits the dictionary for the update method
+    """
+    curly_braces = re.search(r"\{(.*?)\}", args)
+
+    if curly_braces:
+        id_coma = args[:curly_braces.span()[0]].split()
+        id = [i.strip(",") for i in id_coma][0]
+
+        input_str = curly_braces.group(1)
+        try:
+            arg_dict = ast.literal_eval("{" + input_str + "}")
+        except Exception:
+            print("**  invalid dictionary format **")
+            return
+        return id, arg_dict
+    else:
+        cmds = args.split(",")
+        if cmds:
+            try:
+                id = cmds[0]
+            except Exception:
+                return "", ""
+            try:
+                attr_name = cmds[1]
+            except Exception:
+                return id, ""
+            try:
+                attr_value = cmds[2]
+            except Exception:
+                return id, attr_name
+            return "{}".format(id), "{} {}".format(attr_name, attr_value)
 
 
 class HBNBCommand(cmd.Cmd):
@@ -159,12 +196,43 @@ class HBNBCommand(cmd.Cmd):
             objects = storage.all()
             key = "{}.{}".format(args[0], args[1])
 
-            if key in objects:
-                obj = objects[key]
-                setattr(obj, args[2], args[3])
+            curly_braces = re.search(r"\{(.*?)\}", line)
+
+            if curly_braces:
+                if key in objects:
+                    obj = objects[key]
+                    try:
+                        input_str = curly_braces.group(1)
+
+                        args = ast.literal_eval("{" + input_str + "}")
+
+                        attr_name_list = list(args.keys())
+                        attr_value_list = list(args.values())
+                        try:
+                            attr_name1 = attr_name_list[0].strip('\"')
+                            attr_value1 = attr_value_list[0].strip('\"')
+                            setattr(obj, attr_name1, attr_value1)
+                        except Exception:
+                            pass
+                        try:
+                            attr_name2 = attr_name_list[1].strip('\"')
+                            attr_value2 = attr_value_list[1]
+                            setattr(obj, attr_name2, attr_value2)
+                        except Exception:
+                            pass
+                    except Exception:
+                        pass
+                else:
+                    print("** no instance found **")
                 obj.save()
+
             else:
-                print("** no instance found **")
+                if key in objects:
+                    obj = objects[key]
+                    setattr(obj, args[2].strip('\"'), args[3].strip('\"'))
+                    obj.save()
+                else:
+                    print("** no instance found **")
 
     def do_count(self, line):
         """prints the number of isntances of a class"""
@@ -215,10 +283,19 @@ class HBNBCommand(cmd.Cmd):
                 return method_dict[method]("{} {}".format(class_name,
                                            method_args.strip('\"')))
             else:
-                return method_dict[method]("{} {} {} {}".format(class_name,
-                                           all_args[0].strip('\"'),
-                                           all_args[1].strip('\"'),
-                                           all_args[2].strip('\"')))
+                if not class_name:
+                    print("** class name missing **")
+                    return
+                try:
+                    obj_id, arg_dict = parse_curly_braces(method_args)
+                except Exception:
+                    pass
+                try:
+                    call = method_dict[method]
+                    return call("{} {} {}".format(class_name,
+                                obj_id.strip('\"'), arg_dict))
+                except Exception:
+                    pass
 
 
 if __name__ == '__main__':
