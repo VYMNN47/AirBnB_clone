@@ -35,7 +35,7 @@ The console or command interpreter create the data model and allows create, upda
 ## Installation and execution 🔧
 ---
 * Clone the repository
-> $ git clone https://github.com/JoseR98/AirBnB_clone.git
+> $ git clone https://github.com/VYMNN47/AirBnB_clone.git
 * Move in to the directory
 > $ cd AirBnB_clone
 * Execute the console file
