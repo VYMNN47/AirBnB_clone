@@ -82,7 +82,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, line):
         """
-        Creates instance of specified class, saves it, and prints the id
+        Creates instance of specified class
         Usage: creatre <class_name>
         """
 

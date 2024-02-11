@@ -32,6 +32,36 @@ class TestHBNBCommand_prompting(unittest.TestCase):
             self.assertEqual("", output.getvalue().strip())
 
 
+class TestHBNBCommand_help(unittest.TestCase):
+    """Unittests for testing help messages of the HBNB command interpreter."""
+
+    def test_help_quit(self):
+        h = "Quit command to exit the program"
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNBCommand().onecmd("help quit"))
+            self.assertEqual(h, output.getvalue().strip())
+
+    def test_help_create(self):
+        h = ("Creates instance of specified class\n        "
+             "Usage: creatre <class_name>")
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNBCommand().onecmd("help create"))
+            self.assertEqual(h, output.getvalue().strip())
+
+    def test_help_EOF(self):
+        h = "exits the program if End-Of-Line"
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNBCommand().onecmd("help EOF"))
+            self.assertEqual(h, output.getvalue().strip())
+
+    def test_help_show(self):
+        h = ("Prints string representation of instance\n        "
+             "Usage: show <class_name> <class_id>")
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNBCommand().onecmd("help show"))
+            self.assertEqual(h, output.getvalue().strip())
+
+
 class TestHBNBCommand_create(unittest.TestCase):
     """Unittests for testing create from the HBNB command interpreter."""
 
