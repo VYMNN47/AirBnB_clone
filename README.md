@@ -32,10 +32,6 @@ The console or command interpreter create the data model and allows create, upda
 * What is **kwargs and how to use it
 * How to handle named arguments in a function
 
-## Requeriments 📋
----
-Airbnb was built and tested in Ubuntu 14.04 LTS via Vagrant in VirtualBox. Programming languaje python3
-
 ## Installation and execution 🔧
 ---
 * Clone the repository
